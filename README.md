@@ -1,71 +1,87 @@
 # zero-to-phd
 
-A Claude Code skill that acts as your personal expert trainer. Give it any topic and a number of days, and it builds a Harvard/MIT-level, completely free, day-by-day learning plan that takes you from zero to confident practitioner.
+> Give it a topic. Give it a number of days. Get a Harvard/MIT-level learning plan — free resources only, day by day, from zero to confident.
 
-## What it does
+Built this because every "learning roadmap" I found was either a link dump or a paid course funnel. This one actually tells you what to do each hour.
 
-- Generates a structured N-day training plan for any topic
-- Sources only 100% free resources (YouTube, MIT OCW, Harvard CS50, freeCodeCamp, official docs)
-- Each day has morning + afternoon blocks, specific resources with links, and a hands-on mini-project
-- Key Insight block per day — the mental model shift that separates beginners from experts
-- Mermaid diagrams for learning arc and concept map (renders on GitHub)
-- Visual time blocks and progress tracker
-- Ends with a capstone project you can put in a portfolio
-- Saves everything locally: full plan, printable cheat sheet, all links, projects folder
+---
 
-## Usage
+## What you get
+
+Type `/zero-to-phd Python 5` and it builds:
 
 ```
+Day 1  Zero → Foundation      resources + hands-on build + self-test
+Day 2  Foundation → Builder   resources + hands-on build + self-test
+Day 3  Builder → Practitioner resources + hands-on build + self-test
+Day 4  Practitioner → Expert  resources + hands-on build + self-test
+Day 5  Expert → PhD           capstone project + confidence test
+```
+
+Everything saves locally to `~/zero-to-phd-courses/<topic>/`:
+
+```
+README.md      full plan with Mermaid diagrams
+HANDOUT.md     one-page cheat sheet (print this)
+resources.md   every link organized by day
+projects/      your daily builds go here
+```
+
+---
+
+## Quick start
+
+```bash
+# Install
+cp skills/zero-to-phd/SKILL.md ~/.claude/commands/zero-to-phd.md
+
+# Use
 /zero-to-phd Python 5
 /zero-to-phd "Vector Databases" 7
 /zero-to-phd n8n 3
-/zero-to-phd
+/zero-to-phd          # asks you questions first
 ```
 
-If you run it without arguments, it asks clarifying questions first.
+---
 
-## Prebuilt topic tracks
+## Topics with prebuilt resource sets
 
-- Python (advanced track)
-- SQL & Analytics
-- Machine Learning / AI
-- n8n (workflow automation)
-- Vector Databases
-- Any topic you provide
+| Topic | What you'll be able to do after |
+|-------|--------------------------------|
+| Python | Build real scripts, automate tasks, read/write data |
+| SQL & Analytics | Query any database, answer business questions |
+| Machine Learning / AI | Train models, understand what's actually happening |
+| n8n | Automate workflows without writing much code |
+| Vector Databases | Build semantic search and RAG pipelines |
+| Anything else | Provide any topic — it researches resources live |
 
-## What gets saved locally
+---
 
-Every run creates `~/zero-to-phd-courses/<topic>/`:
+## How each day is structured
 
-```
-README.md           Full N-day training plan (your working document)
-HANDOUT.md          One-page cheat sheet — print this
-resources.md        All links organized by day
-projects/
-  README.md         Folder structure + daily commit habit guide
-  day1/ day2/ ...   Save your daily builds here
-```
+Every day has the same shape:
 
-## Installation
+- **Key Insight** — the one mental model shift that separates beginners from experts on this topic
+- **Morning block** — core concepts with specific resources and timestamps
+- **Afternoon block** — applied practice
+- **Daily build** — something you made, not followed along with
+- **Self-test** — 3 questions. Need 3/3 before moving on. If you score lower, there's a recovery protocol.
 
-Copy the skill to your global Claude Code commands folder:
+---
 
-```bash
-cp skills/zero-to-phd/SKILL.md ~/.claude/commands/zero-to-phd.md
-```
+## What makes this different
 
-Then use `/zero-to-phd` in any Claude Code session.
+Most learning plans are passive. This one isn't.
 
-## Design principles
+- Every hour has a specific task, not "explore the docs"
+- Only free resources — no Udemy, no paywalls, no credit cards
+- Concept map generated for every topic so you see the full picture before Day 1
+- Adapts to your schedule: 1-2 hrs/day or 5+ hrs/day modes built in
+- Ends with a confidence test you can only pass by actually building things
+- Every plan closes with: open the first link right now, not tonight
 
-- No filler. Every hour has a specific task.
-- Only free resources. No paywalls, no credit cards.
-- Build something every day.
-- Key Insight per day — not a summary, the actual mental model shift.
-- Harvard/MIT quality bar.
-- Real projects, not toy examples.
-- Common Traps with Trap / Why / Fix format.
-- Confidence Test with explicit pass/fail criteria and time limit.
-- Time flexibility — 1-2 hr/day and 5+ hr/day modes built in.
-- Failure recovery — 3/3 Self-Test required before moving to the next day.
-- Activation closer — every plan ends with "start in the next 10 minutes."
+---
+
+## License
+
+MIT
