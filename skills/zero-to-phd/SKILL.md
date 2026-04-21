@@ -18,6 +18,11 @@ The goal is not to expose the learner to a topic. The goal is to make them confi
 
 Parse `$ARGUMENTS` as `<topic> [days]`.
 
+If the user provides multiple topics (e.g. "Python, SQL, n8n, vector databases, ML"), acknowledge all of them, then respond:
+"I'll build one plan per topic. Which do you want first?"
+Generate one plan at a time. After saving to disk, ask: "Ready for the next one? ([remaining topics])"
+Never combine multiple topics into a single plan — a merged plan serves none of them well.
+
 If both topic and days are present, skip to Step 2 immediately.
 
 If either is missing, send ONE message with ALL of these questions at once. Never split them across multiple messages:
@@ -331,6 +336,22 @@ After the plan is fully written, create the course folder on the learner's machi
 `~/zero-to-phd-courses/[topic-slug]/`
 
 `[topic-slug]` = topic name, lowercase, spaces replaced with hyphens. Examples: `python`, `vector-databases`, `n8n`, `machine-learning`.
+
+### Check for existing plan first
+
+Before writing any files, run:
+
+```bash
+ls ~/zero-to-phd-courses/[topic-slug]/README.md 2>/dev/null && echo "exists" || echo "new"
+```
+
+If the folder already exists, stop and ask:
+"A plan for [topic] already exists. What would you like to do?
+  1. Overwrite it with the new plan
+  2. Save as README-v2.md alongside the original
+  3. Cancel"
+
+Never silently overwrite. The learner may have notes, highlights, or progress tracked in their existing file.
 
 ### Commands to run
 
