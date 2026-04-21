@@ -38,10 +38,12 @@ If you run it without arguments, it asks clarifying questions first.
 Every run creates `~/zero-to-phd-courses/<topic>/`:
 
 ```
-README.md      Full N-day training plan (your working document)
-HANDOUT.md     One-page cheat sheet — print this
-resources.md   All links organized by day
-projects/      Save your daily builds here
+README.md           Full N-day training plan (your working document)
+HANDOUT.md          One-page cheat sheet — print this
+resources.md        All links organized by day
+projects/
+  README.md         Folder structure + daily commit habit guide
+  day1/ day2/ ...   Save your daily builds here
 ```
 
 ## Installation
@@ -63,4 +65,7 @@ Then use `/zero-to-phd` in any Claude Code session.
 - Harvard/MIT quality bar.
 - Real projects, not toy examples.
 - Common Traps with Trap / Why / Fix format.
-- Confidence Test with explicit pass/fail criteria.
+- Confidence Test with explicit pass/fail criteria and time limit.
+- Time flexibility — 1-2 hr/day and 5+ hr/day modes built in.
+- Failure recovery — 3/3 Self-Test required before moving to the next day.
+- Activation closer — every plan ends with "start in the next 10 minutes."
