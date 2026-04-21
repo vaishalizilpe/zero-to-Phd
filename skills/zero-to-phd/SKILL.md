@@ -47,7 +47,7 @@ Wait for answers. Then proceed to Step 2.
 
 ## Step 2 — Research (always run before writing the plan)
 
-Use WebSearch to find the BEST free resources available right now for this specific topic. Run all three searches in parallel:
+Use WebSearch to find the BEST free resources available right now for this specific topic. Run all three searches. Do not skip any — each covers a different discovery surface and stopping early produces a weaker resource set:
 
 1. `"best free [topic] course 2024 OR 2025" site:youtube.com OR site:freecodecamp.org OR site:ocw.mit.edu OR site:cs50.harvard.edu`
 2. `"[topic] tutorial beginner" freecodecamp OR mit opencourseware OR stanford OR kaggle`
@@ -112,23 +112,71 @@ Day N  Expert → PhD           "I can think critically, extend, and teach it"
 
 ### Concept Map
 
-After the Learning Arc, render a Mermaid mindmap showing how all the major concepts in the course connect. This gives the learner a mental model of the whole subject before they start Day 1. Nodes should be real concept names from this specific topic, not generic labels.
+After the Learning Arc, render a Mermaid mindmap showing how all the major concepts in the course connect. This gives the learner a mental model of the whole subject before they start Day 1.
 
+Use real concept names from this specific topic — never placeholder labels like "Core Concept A". The difference between a useful mindmap and a useless one is specificity.
+
+**Python example (do it like this):**
 ````markdown
 ```mermaid
 mindmap
-  root(([TOPIC]))
-    [Core Concept A]
-      [Sub-concept A1]
-      [Sub-concept A2]
-    [Core Concept B]
-      [Sub-concept B1]
-    [Core Concept C]
-      [Sub-concept C1]
-      [Sub-concept C2]
-    [Core Concept D]
+  root((Python))
+    Syntax
+      Variables & Types
+      Strings & f-strings
+      Numbers & Booleans
+    Control Flow
+      if/elif/else
+      for & while loops
+      break & continue
+    Data Structures
+      Lists
+      Dictionaries
+      Tuples & Sets
+    Functions
+      Parameters & Returns
+      *args & **kwargs
+      Lambda
+    Files & Data
+      File I/O
+      CSV & JSON
+      Error Handling
+    OOP
+      Classes & Objects
+      Inheritance
+      Dunder Methods
 ```
 ````
+
+**Vector Databases example (different topic, different map):**
+````markdown
+```mermaid
+mindmap
+  root((Vector DBs))
+    Embeddings
+      What is a vector
+      Embedding models
+      Dimensions
+    Indexing
+      HNSW
+      IVF
+      Flat index
+    Search
+      Similarity metrics
+      ANN search
+      Hybrid search
+    Databases
+      Pinecone
+      Weaviate
+      Chroma
+    Use Cases
+      Semantic search
+      RAG pipelines
+      Recommendation
+```
+````
+
+Generate the mindmap at this level of specificity for whatever topic the user requested.
 
 ---
 
@@ -155,7 +203,11 @@ For every day, use this exact structure. Do not abbreviate or skip sections.
 
 **Theme:** [One sentence — what the day is fundamentally about]
 
-**Time block** (adjust lengths to match actual allocation):
+**Time block** — scale to the learner's daily commitment:
+- **3-4 hrs/day:** Morning block + Afternoon block + Daily project (full structure below)
+- **1-2 hrs/day:** Collapse Morning + Afternoon into one Single block. Cut daily project to 20 min. Never drop the Self-Test.
+- **5+ hrs/day:** Add a third "Deep Dive" block using one PhD Depth Track resource.
+
 ```
 Morning  ████████░░  [X hrs] — [Block name]
 Afternoon ██████░░░░  [X hrs] — [Block name]
@@ -190,10 +242,19 @@ Project   ████░░░░░░  [X hrs] — Daily build
 ---
 
 #### End-of-Day Self-Test
-Answer these out loud or in writing. If you can't answer one, rewatch the relevant section before moving on.
+Answer these out loud or in writing. You need 3/3 before moving to the next day.
+
 - [ ] [Question that tests core concept 1 — should require more than one word to answer]
 - [ ] [Question that tests core concept 2]
 - [ ] [Question that tests core concept 3]
+
+**If you score 2/3 or lower:** Don't move on. Spend 30 minutes on targeted remediation:
+1. Identify which question(s) you couldn't answer.
+2. Go back to the specific resource that covered that concept (not the full day — just that section).
+3. Redo only the Build task related to that concept.
+4. Retry the Self-Test. Repeat until you pass 3/3.
+
+Moving to the next day with unresolved gaps compounds — Day 3 builds on Day 2 which builds on Day 1. One skipped concept becomes three broken days.
 
 **Daily Project:** [A concrete mini-project built today from scratch. No copy-paste. Should take 30-60 min.
 Include: what to build, what tools/commands to use, and what done looks like.]
@@ -362,7 +423,26 @@ Pass if: [criterion 1] / [criterion 2] / [criterion 3]
 
 **`resources.md`** — All links from the plan organized by day, for offline reference. One line per resource: `Day N | [Title] | [URL]`.
 
-**`projects/`** — Empty folder. Learner saves daily projects here.
+**`projects/`** — Folder for daily builds. Write a `projects/README.md` stub with this content:
+
+```markdown
+# Projects
+
+Save each daily build here as its own folder.
+
+## Structure
+day1/   — [Daily project title]
+day2/   — [Daily project title]
+day3/   — [Daily project title]
+...
+
+## Habit
+Commit after each day:
+    git add day[N]/
+    git commit -m "Day [N]: [project name]"
+
+Seeing your commits stack up is the fastest way to stay motivated.
+```
 
 ### After saving, tell the learner
 
@@ -375,6 +455,24 @@ Saved to: ~/zero-to-phd-courses/[topic-slug]/
   projects/     Save your daily builds here
 
 Open: open ~/zero-to-phd-courses/[topic-slug]/
+```
+
+Then add this closing block — verbatim, every time:
+
+```
+---
+## Start Right Now
+
+Don't save this for later. 80% of learners who say "I'll start tonight" don't.
+
+Your next 10 minutes:
+1. Open this link: [Day 1 Resource 1 URL]
+2. Watch the first 10 minutes.
+3. Open a new file and type the first example from the video.
+
+That's it. You don't have to finish Day 1 right now.
+You just have to start.
+---
 ```
 
 ---
